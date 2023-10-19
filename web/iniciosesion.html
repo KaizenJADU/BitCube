@@ -1,33 +1,42 @@
-<html>
+<html lang="en">
 
 <head>
-    <title>Bit-Cube Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="stylefooterandheader.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styleiniciosesion.css">
+
 
 </head>
 
 <body>
-    <div class="body">
-        <div class="Home">
-            <section>
-                <h1 style="color: #4CAF50;">Bit-Cube</h1>
-                <h1 style="color: #3D9BE9; margin-bottom: 30px;">Bienvenido</h1>
-                <a href="registrarse.html"><button class="custom-btn btn-3"><span>Registrate</span></button></a><br>
-                <a href="iniciosesion.html"><button class="custom-btn btn-4"><span>Iniciar
-                            sesión</span></button></a><br>
-                <a href="principal.html"><button class="custom-btn btn-16">Continuar sin iniciar sesión</button></a><br>
-            </section>
-
+    <div class="container">
+        <div class="form-container">
+            <h3 class="title">Ya casi llegamos</h3>
+            <p>Inserta tus datos para acceder</p>
+            <form action="" method="POST" id="login">
+                <div class="input-container">
+                    <label for="email" class="label">
+                        <i class="fas fa-user-alt"></i>
+                        Email
+                    </label>
+                    <input class="input" type="email" name="email" autocomplete="off" required>
+                </div>
+                <div class="input-container">
+                    <label for="password" class="label">
+                        <i class="fas fa-key"></i>
+                        Password
+                    </label>
+                    <input class="input" type="password" name="password" required>
+                </div>
+                <button type="submit" class="btn" id="logear">Login</button>
+                <a href="" class="forgot-link">¿Olvidaste tu contraseña?</a>
+            </form>
         </div>
-        <img src="imagenes/autismo1.jpg">
     </div>
     <footer>
         <div>
@@ -80,5 +89,7 @@
             </span>
         </div>
     </footer>
+    <script src="scriptiniciosesion.js"></script>
 </body>
+
 </html>

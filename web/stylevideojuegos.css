@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    background-color: #FAECE1;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.body {
+    height: 100vh;
+    display: flex;
+    margin: 0;
+}
