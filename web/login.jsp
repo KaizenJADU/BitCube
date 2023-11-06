@@ -1,4 +1,6 @@
-<html lang="en">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -18,7 +20,7 @@
         <div class="form-container">
             <h3 class="title">Ya casi llegamos</h3>
             <p>Inserta tus datos para acceder</p>
-            <form action="iniciosesion.php" method="POST" id="login">
+            <form action="login.jsp" method="post" id="login">
                 <div class="input-container">
                     <label for="email" class="label">
                         <i class="fas fa-user-alt"></i>
@@ -35,34 +37,32 @@
                 </div>
                 <input type="submit" class="btn" name="login" id="logear" value="Iniciar sesión">
                 <a href="" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                    <%@ page import="java.sql.*" %>
+                    <%@ page import="conexion.conectadita" %>
 
-                <?php
-                require 'conexionbd.php';
+                    <%
+                    if (request.getParameter("login")!=null) {
+                    String email = request.getParameter("email");
+                    String password = request.getParameter("password");
 
-                if (isset($_POST['login'])) {
-                    $email = trim($_POST['email']);
-                    $contra = trim($_POST['password']);
+                    conectadita conecta = new conectadita();
+                    Connection con = conecta.getConnection();
 
-                    $sql = "SELECT u.IdUsuario,u.correoUsuario, u.contrasena,u.nombreUsuario,tu.idTipoUsuario, tu.nombreUsuario as rol
-                    FROM Usuario u left join TipoUsuario tu ON u.idTipoUsuario = tu.idTipoUsuario
-                    where correoUsuario = '$email' AND contrasena= '$contra'";
-                    $resulbusc = mysqli_query($conn, $sql);
-                    $row = $resulbusc->fetch_assoc();
-                    if (!$resulbusc) {
-                        echo "Error en la consulta: " . mysqli_error($conn);
+                    String query = "SELECT * FROM Usuario WHERE correoUsuario = ? AND contrasena = ?";
+                    PreparedStatement pst = con.prepareStatement(query);
+                    pst.setString(1, email);
+                    pst.setString(2, password);
+
+                    ResultSet rs = pst.executeQuery();
+
+                    if (rs.next()) {
+                        response.sendRedirect("principal.jsp");
                     } else {
-                        if (mysqli_num_rows($resulbusc) > 0) {
-                            session_start();
-                            $_SESSION['user'] = $email;
-                            $_SESSION['rol'] = $row['rol'];
-                            header("Location: principal.php");
-                        } else {
-                            header("Location: index.html");
-                        }
+                        response.sendRedirect("login.jsp?error=usuario o contraseña incorrectos");
                     }
-                }
-                ?>
-
+                    con.close();
+                        }
+                        %>
 
             </form>
         </div>
