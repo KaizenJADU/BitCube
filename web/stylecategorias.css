@@ -9,3 +9,40 @@
     display: flex;
     margin: 0;
 }
+img,
+.pixel-image, 
+.pixel-image > img, 
+.pixel-image > canvas {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+}
+
+.pixel-image {
+    overflow: hidden;
+    resize: both;
+    border-radius: 1em;
+    position: relative;
+}
+.pixel-image > img {
+    filter: blur(10px);
+}
+.pixel-image > canvas {
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    border-radius: 1em;
+    transition: all 1s steps(6);
+}
+
+#app {
+    min-width: 800px;
+    max-width: 100%;
+    padding: 2em;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 3em 1fr 1fr 1fr;
+    
+}

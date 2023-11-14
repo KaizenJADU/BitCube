@@ -13,7 +13,7 @@ body {
 
 header {
     position: relative;
-    width: 100%;
+    width: 100vh;
     background-color: #EAEAEA;
 }
 
@@ -72,7 +72,7 @@ header {
 }
 
 .navbar .navbar_wrapper {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -206,6 +206,9 @@ header {
 }
 
 @media (max-width: 768px) {
+    header{
+        width: 100%;
+    }
     .navbar_nav {
         display: none !important;
     }
@@ -216,10 +219,14 @@ header {
 }
 
 @media (min-width: 768px) {
+     header{
+        width: 100%;
+    }
     .navbar_responsive {
         transform: translate3d(100%, 0, 0) !important;
     }
 }
+
 
 footer {
     background-color: #E9D7C9;
