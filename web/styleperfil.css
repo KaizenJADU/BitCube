@@ -11,12 +11,257 @@ body {
 
 }
 
-.body {
-    margin: 0;
-    background-image: url(imagenes/autismo5.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100% ;
-    height: 150vh;
-    display: flex;
+.container {
+  background: #FFFFFF;
+  width: 50%;
+  height: 30em;
+  margin: 0 auto 10% auto;
+  position: relative;
+  margin-top: 10%;
+  box-shadow: 2px 5px 20px rgba(119, 119, 119, 0.5);
+}
+
+.logos {
+  float: right;
+  margin-right: 12px;
+  margin-top: 12px;
+  font-family: "Nunito Sans", sans-serif;
+  color: #3DBB3D;
+  font-weight: 900;
+  font-size: 1.5em;
+  letter-spacing: 1px;
+}
+
+.CTA {
+  width: 80px;
+  height: 40px;
+  right: -20px;
+  bottom: 0;
+  margin-bottom: 90px;
+  position: absolute;
+  z-index: 1;
+  background: #56E99F;
+  font-size: 1em;
+  transform: rotate(-90deg);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+.CTA h1 {
+  color: #FFFFFF;
+  margin-top: 10px;
+  margin-left: 9px;
+}
+.CTA:hover {
+  background: #3FB6A8;
+  transform: scale(1.1);
+}
+
+.leftbox {
+  float: left;
+  top: -5%;
+  left: 0%;
+  position: absolute;
+  width: 15%;
+  height: 110%;
+  background: #56E99F;
+  box-shadow: 3px 3px 10px rgba(119, 119, 119, 0.5);
+}
+
+.navba a {
+  list-style: none;
+  padding: 35% 0 35% 40%;
+  color: #FFFFFF;
+  font-size: 1.3em;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+.navba a:hover {
+  color: #3FB6A8;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.navba a:first-child {
+  margin-top: 7px;
+}
+
+.activee {
+  color: #3FB6A8;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  color: #7ED386;
+  font-size: 1em;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+h2 {
+  color: #777777;
+  font-family: "Roboto", sans-serif;
+  width: 80%;
+  text-transform: uppercase;
+  font-size: 8px;
+  letter-spacing: 1px;
+  margin-left: 2px;
+}
+
+.p {
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #3FB6A8, rgba(126, 211, 134, 0.5)) 1 0%;
+  border-top: 0;
+  width: 80%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7em;
+  padding: 7px 0;
+  margin-bottom: 10px;
+  color: #070707;
+}
+
+.rightbox {
+  float: right;
+  width: 70%;
+  height: auto;
+}
+
+.profile, .payment, .subscription, .privacy, .settings {
+  transition: opacity 0.5s ease-in;
+  position: absolute;
+  width: 70%;
+}
+
+
+.btn {
+  float: right;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  border: none;
+  color: #3FB6A8;
+}
+
+.btn:hover {
+  text-decoration: underline;
+  font-weight: 900;
+}
+
+input {
+  border: 1px solid #dddddd;
+  font-family: "Roboto", sans-serif;
+  padding: 2px;
+  margin: 0;
+}
+
+.privacy h2 {
+  margin-top: 25px;
+}
+
+.settings h2 {
+  margin-top: 25px;
+}
+
+.noshow {
+  opacity: 0;
+}
+
+.toggle-switch {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+.toggle-switch label {
+  cursor: pointer;
+  color: #AFAFAF;
+}
+.toggle-switch .label-one {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.toggle-switch input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+.toggle-switch .toggle-switch-placeholder {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 26px;
+  background-color: #AFAFAF;
+  border-radius: 26px;
+  cursor: pointer;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.toggle-switch .toggle-switch-placeholder:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 26px;
+  border: 1px solid #AFAFAF;
+  box-sizing: border-box;
+}
+.toggle-switch .toggle-switch-placeholder:after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 33px;
+  margin-left: 0;
+  width: 26px;
+  height: 26px;
+  background-color: #AFAFAF;
+  border: 1px solid #AFAFAF;
+  border-radius: 50%;
+  transition: right 0.25s ease-in-out;
+}
+.toggle-switch .toggle-switch-placeholder .on-off {
+  width: 200%;
+  display: block;
+  margin-left: -100%;
+  transition: margin 0.25s ease-in-out;
+  font-size: 12px;
+}
+.toggle-switch .toggle-switch-placeholder .on-off:before, .toggle-switch .toggle-switch-placeholder .on-off:after {
+  float: left;
+  width: 50%;
+  height: 26px;
+  line-height: 26px;
+  box-sizing: border-box;
+}
+.toggle-switch .toggle-switch-placeholder .on-off:before {
+  content: "ON";
+  padding-left: 12px;
+  background-color: #00BE74;
+  color: #ffffff;
+  text-align: left;
+}
+.toggle-switch .toggle-switch-placeholder .on-off:after {
+  content: "OFF";
+  padding-right: 8px;
+  background-color: #fafafa;
+  color: #AFAFAF;
+  text-align: right;
+}
+.toggle-switch input[type=checkbox]:checked ~ .toggle-switch-placeholder:after {
+  left: auto;
+  right: 0;
+  margin-left: 34px;
+  margin-right: 0;
+  border-color: #00BE74;
+  background-color: #fff;
+}
+.toggle-switch input[type=checkbox]:checked ~ .toggle-switch-placeholder:before {
+  border-color: #00BE74;
+}
+.toggle-switch input[type=checkbox]:checked ~ .toggle-switch-placeholder .on-off {
+  margin-left: 0;
 }

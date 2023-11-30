@@ -12,7 +12,6 @@ body {
     background-color: #FAECE1;
     font-family: "Roboto Condensed", sans-serif;
 }
-
 #calendar {
  margin: 0;
  padding: 0;
@@ -287,6 +286,38 @@ body {
 .entry.orange:after { background: rgba(247, 167, 0, 1); }
 .entry.green:after { background: rgba(153, 198, 109, 1); }
 .entry.yellow:after { background: rgba(249, 233, 0, 1); }
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em #5F98FF;
+  transform: translateY(-0.25em);
+}
+
+.raise {  
+  color: #fff;
+  transition: 0.25s;
+  
+  &:hover,
+  &:focus { 
+    border-color:#5F98FF;
+    color: #5F98FF;
+  }
+}
+
+
+.raise {
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    font-size: 120%;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+    color: #1966F3;
+    margin: 0 0% 5% 44%;
+}
+
+
 
 /* Animations are cool!  */
 @-webkit-keyframes moveFromTopFade {

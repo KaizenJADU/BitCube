@@ -14,6 +14,43 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scriptprincipal.js"></script>
 
+<style>
+    .aviso-container {
+       display: none;
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       background-color: #f8d7da;
+       color: #721c24;
+       padding: 10px;
+       text-align: center;
+       z-index: 1000;
+    }
+    #sesion,
+    #cerrarAviso {
+       padding: 8px 20px;
+       font-size: 16px;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       color: #fff;
+       }
+
+    #sesion{
+      background-color: #007BFF; 
+    }
+
+    #cerrarAviso {
+      background-color: #DC3545; 
+    }
+    #sesion:hover{
+      background-color: #0056b3; 
+    }
+    #cerrarAviso:hover {
+       background-color: #a52a2a;
+    }
+</style>
 </head>
 
 <body>
@@ -65,55 +102,46 @@
     </header>
     <div style="position: relative; width: 40%;  margin: 5% 0 0 30%;">
     <img src="imagenes/autismo2.png" alt="alt" style="width: 100%;">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: black; font-size: 24px; font-weight: bold;">
-        Categorias
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: black; font-size: 400%; font-weight: bold;">
+        Categorías
     </div>
     
 </div>
-    
-    
-    <section id="app">
-    
-    <div class="pixel-image" data-size=1>
+   <ul class="cards">
+  <li>
+    <a href="" class="card">
+        <img src="imagenes/picto1.png" class="card__image" alt="" />
+      <div class="card__overlay">
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+          <div class="card__header-text">
+            <h3 class="card__title">Música</h3>            
+          </div>
+        </div>
+        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+      </div>
+    </a>      
+  </li>
+  <li>
+    <a href="" class="card">
+        <img src="imagenes/picto2.png" class="card__image" alt="" />
+      <div class="card__overlay">        
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+          <div class="card__header-text">
+            <h3 class="card__title">Deportes</h3>
+          </div>
+        </div>
+        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+      </div>
+    </a>
+  </li>
+</ul>
+    <div id="aviso" class="aviso-container">
+        <p>Bienvenido a las categorías . Para utilizar este contenido debes Iniciar sesión.</p>
+        <button id="sesion" onclick="irALogin()">Iniciar Sesión</button>
+        <button id="cerrarAviso" onclick="cerrarAviso()">Cerrar</button>
     </div>
-    <div class="pixel-image" data-size=1 data-hue="-60">
-    </div>
-    
-    
-    
-    <div class="pixel-image" data-size=1.5>
-    </div>
-    <div class="pixel-image" data-size=1.5 data-hue="60">
-    </div>
-    
-    
-    
-    <div class="pixel-image" data-size=2>
-    </div>
-    <div class="pixel-image" data-size=2 data-hue=120>
-    </div>
-    
-    
-   
-    <div class="pixel-image" data-size=2.5>
-    </div>
-    <div class="pixel-image" data-size=2.5 data-hue=180>
-    </div>
-    
-    
-    
-    <div class="pixel-image" data-size=3>
-    </div>
-    <div class="pixel-image" data-size=3 data-hue=270>
-    </div>
-    
-    
-    
-    <div class="pixel-image" data-size=4>
-    </div>
-    <div class="pixel-image" data-size=4 data-hue=-60>
-    </div>
-</section>
     <footer>
        <div>
             <span class="logo">Bit-Cube</span>
@@ -182,6 +210,24 @@
        </div>
         <script src="scriptfooter.js"></script>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            mostrarAviso();
+        });
+
+        function mostrarAviso() {
+            var aviso = document.getElementById("aviso");
+            aviso.style.display = "block";
+        }
+
+        function cerrarAviso() {
+            var aviso = document.getElementById("aviso");
+            aviso.style.display = "none";
+        }
+         function irALogin() {
+        window.location.href = "login.jsp";
+    }
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,213 @@
+.modal-fade{
+    text-align: center;
+    display: none;
+    position: fixed;
+    width: 40%;
+    top: 50%;
+    left: 50%;
+    background: white;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1000;
+    border-radius: 10px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+}
+#cerrarAviso {
+    padding: 8px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #DC3545; 
+}
+.modal-title{
+    margin: 5%;   
+}
+.modal-body{
+    margin: 8% 0 8% 0;   
+    font-size: 18px;
+}
+#cerrarAviso:hover {
+   background-color: #a52a2a;
+}
+#cancelar{
+    margin: 0 3% 0 0%;
+   padding: 8px 20px;
+   font-size: 16px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   color: #000;
+   background: #fff;
+   border: 1px solid #4C4C4C;
+}
+#cancelar:hover {
+   background-color: #DCDFDC;
+}
+
+.text-warning{
+    color: red;
+}
+.modal-fade .edit{
+    background:#5397FB; 
+    width: 25%;
+     padding: 9px 0 9px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+.modal-fade .edit:hover{
+    background:#3978D5; 
+}
+table {
+    margin: 0 0 20% 10%;
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 0;
+    border-radius: 5px;
+    transition: .5s;
+    
+}
+table:hover{
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+    border: 0;
+    text-align: center;
+    padding: 3px;
+}
+td{
+    border-bottom: 1px solid black;
+
+}
+  tr{
+    background: rgba(255, 255, 255, 0.5);
+    transition: background-color 0.3s ease-in-out;
+}
+tr:hover {
+    background-color: #FEFEFE;
+    }
+
+th {
+    background-color: #f2f2f2;
+}
+
+.input-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 2px;
+	width: 100%;
+}
+
+.input-group {
+	width: 48%;
+        
+
+}
+img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.action-buttons {
+    justify-content: space-around;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 0px;
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input[type="file"],
+input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #1EA8FF;
+    border-radius: 4px;
+}
+table .btn{
+    background:#14B215; 
+    border: 0; 
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+   
+}
+table .btn:hover{
+background:#119212;
+}
+table .edit{
+    background:#5397FB; 
+    border: 0; 
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+}
+table .edit:hover{
+    background:#3978D5; 
+}
+table .delet{
+    background:#F44040; 
+    border: 0; 
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+}
+table .delet:hover{
+background:#C43030;
+}
+.modal .modal-dialog {
+  max-width: 400px;
+}
+.modal .modal-header,
+.modal .modal-body,
+.modal .modal-footer {
+  padding: 20px 30px;
+}
+.modal .modal-content {
+  border-radius: 3px;
+}
+.modal .modal-footer {
+  background: #ecf0f1;
+  border-radius: 0 0 3px 3px;
+}
+.modal .modal-title {
+  display: inline-block;
+}
+.modal .form-control {
+  border-radius: 2px;
+  box-shadow: none;
+  border-color: #dddddd;
+}
+.modal textarea.form-control {
+  resize: vertical;
+}
+.modal .btn {
+  border-radius: 2px;
+  min-width: 100px;
+}
+.modal form label {
+  font-weight: normal;
+}
+.mi-header {
+    position: relative;
+    width: 100vh;
+    background-color: #EAEAEA;
+}
+

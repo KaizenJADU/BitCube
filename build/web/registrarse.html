@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="styleregistrarse.css">
 	<link rel="stylesheet" href="stylefooterandheader.css">
+        <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -19,6 +20,7 @@
             <div class="overlay">
             </div>
             <div class="overlay-container">
+            <a href="index.html" style="margin:2.5% 0 0 95%;" ><i class="fa-solid fa-house fa-lg" style="color: #000;  font-size: 35px"></i></a>
                 <form action="registro.jsp" method="post" onsubmit="validateCaptcha()" id="registro">
                             <h1>Regístrate</h1>
                             <p>Únete a Bit-Cube y da alas a los sueños de niños con Autismo.</p>
@@ -46,93 +48,130 @@
                             <div class="input-row">
                                     <div class="input-group">
                                             <label for="telefono">Teléfono:</label>
-                                            <input type="text" id="telefono" name="phone" placeholder="P. ej., 555-555-555" autocomplete="off"/>
+                                            <input type="number" id="telefono" name="phone" placeholder="P. ej., 555-555-555" autocomplete="off"/>
                                     </div>
                                     <div class="input-group">
                                             <label for="contrasena">Contraseña:</label>
-                                            <input type="password" id="contrasena" name="pass" placeholder="Ingresa una contraseña" autocomplete="off" required/>
+                                            <input type="password" id="contrasena" name="pass" placeholder="Contraseña" autocomplete="off" required/>
                                     </div>
                             </div>
                             <div class="input-row">
                                     <div class="input-group">
                                             <label for="rfc">RFC:</label>
-                                            <input type="text" id="rfc" name="rfc" placeholder="Ingresa tu RFC" autocomplete="off" required/>
+                                            <input type="text" id="rfc" name="rfc" placeholder="RFC" autocomplete="off" required/>
                                     </div>
                                     <div class="input-group">
                                             <label for="codigo">Código:</label>
-                                            <input type="password" id="codigo" name="cod" placeholder="Ingresa codigo" autocomplete="off" required/>
+                                            <input type="password" id="codigo" name="cod" placeholder="Máximo 4 números" oninput="validateNumberInput(this)" autocomplete="off" required/>
                                         </div>
                             </div>
                            
                             <div class="ninos">
-                                    <h2 style="margin-top: 10px; margin-bottom: 0px;">Datos del niño</h2>
+                                    <h2 style="margin-top: 10px; margin-bottom: 0px;">Datos del Infante</h2>
                                     <div class="input-row">
                                             <div class="input-group">
-                                                <input type="text" name="nameni" placeholder="Ingresa el nombre del niño" autocomplete="off" required/>
-                                                
+                                                <input type="text" name="nameni" placeholder="Nombre del niño" autocomplete="off" required/>
                                                 <input type="number" name="edad" placeholder="Edad" />
                                             </div>
                                         <div class="input-group">
-                                            <input type="text" name="ap_pater_ni" placeholder="Ingresa el apellido paterno del niño" autocomplete="off" required/>
-                                            <input type="text" name="ap_mater_ni" placeholder="Ingresa el apellido materno del niño" autocomplete="off" required/>
+                                            <input type="text" name="ap_pater_ni" placeholder="Apellido paterno del niño" autocomplete="off" required/>
+                                            <input type="text" name="ap_mater_ni" placeholder="Apellido materno del niño" autocomplete="off" required/>
                                         </div>
                                     </div>
-                                            <input type="submit" id="enviar" name="registrar" value="Registrarse">
-                            </div>
+                                    </div>
+                                    <div class="input-row">
+                                       <div class="input-group">
+                                        <input type="radio" name="sexo" id="hombre" value="Hombre" required/>
+                                        <label class="radio" for="hombre">Hombre</label>
+                                    </div>
+                                        <div class="input-group" style="margin-bottom: 3%;">
+                                        <input type="radio" name="sexo" id="mujer" value="Mujer" required/>
+                                        <label class="radio" for="mujer">Mujer</label>
+                                    </div>
+                                    </div>
+                            <input type="submit" id="enviar" name="registrar" value="Registrarse">
                     </form>
+                                            
             </div>
 	</div>
     <footer>
-        <div>
+       <div>
             <span class="logo">Bit-Cube</span>
-        </div>
-        <div class="row">
+       </div>
+       <div class="row"> 
             <div class="col-3">
                 <div class="link-cat" onclick="footerToggle(this)">
                     <span class="footer-toggle"></span>
-                    <span class="footer-cat">Acerca de nosotros</span>
+                    <span class="footer-cat">Links Populares</span>
                 </div>
-                
+                <ul class="footer-cat-links">
+                    <li><a href="Pictogramas.html"><span>Pictogramas</span></a></li>
+                    <li><a href="videojuegos.html"><span>Videojuegos</span></a></li>
+                    <li><a href="videos.html"><span>Videos</span></a></li>
+                    <li><a href="categorias.html"><span>Categorias</span></a></li>
+                </ul>
             </div>
             <div class="col-3">
                 <div class="link-cat" onclick="footerToggle(this)">
                     <span class="footer-toggle"></span>
-                    <span class="footer-cat">Dirección</span>
+                    <span class="footer-cat">Links Rapidos</span>
                 </div>
-                
+                <ul class="footer-cat-links">
+                    <li><a href="index.html"><span>Home</span></a></li>
+                    <li><a href="registrarse.html"><span>Regístrate</span></a></li>
+                    <li><a href="login.jsp"><span>Inicia Sesión</span></a></li>
+                    <li><a href="principal.html"><span>Principal</span></a></li>
+                    <li><a href="perfil.html"><span>Perfil</span></a></li>
+                    <li><a href="calendario.html"><span>Calendario</span></a></li>
+                </ul>
             </div>
-            <div class="col-3">
-                <div class="link-cat" onclick="footerToggle(this)">
-                    <span class="footer-toggle"></span>
-                    <span class="footer-cat">Contacto</span>
-                </div>
-                
-            </div>
-            
             <div class="col-3" id="newsletter">
-
                 <div class="social-links social-2">
-                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100092619345456&mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-twitter"></i></a>
                     <a href=""><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/KaizenJADU"><i class="fab fa-github"></i></a>
+                </div><br><br>
+
+                <div id="address">
+                    <span>Localización de las oficinas</span>
+                    <ul>
+                        <li>
+                            <i class="far fa-building"></i>
+                            <div>Ciudad de México<br/>
+                            Centro Estudios Científicos y Tecnológicos "Juan de Dios Bátiz"</div>
+                        </li>    
+                    </ul>
                 </div>
-
-
             </div>
             <div class="social-links social-1 col-6">
-                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100092619345456&mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
                 <a href=""><i class="fab fa-instagram"></i></a>
-                
+                <a href="https://github.com/KaizenJADU"><i class="fab fa-github"></i></a>
+                <br><br>
             </div>
-        </div>
-        <div id="copyright">
-            &copy; Bit-Cube
-        </div>
-        <div id="owner">
-            <span>
-                Designed by <a href="http://kaizen.gerdoc.com/">Kaizen</a>
-            </span>
-        </div>
+       </div>
+       <div id="copyright">
+           &copy; Todos los drechos reservados 2023-2024
+       </div>
+       <div id="owner">
+           <span>
+               Hecho por <a href="http://kaizen.gerdoc.com">Kaizen</a>
+           </span>
+       </div>
+        <script src="scriptfooter.js"></script>
     </footer>
+    <script>
+function validateNumberInput(input) {
+ 
+    input.value = input.value.replace(/\D/g, '');
+
+    if (input.value.length > 4) {
+        input.value = input.value.slice(0, 4);
+    }
+}
+</script>
 </body>
 
 </html>

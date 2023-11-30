@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>Adicional niño</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleniño.css"/>
+</head>
+<body>
+    <div class="container">  
+        <form id="contact" action="registroniño.jsp" method="post">
+            <h1>Información sobre el niño</h1>
+            <h4>Gracias por confiar en nosotros</h4>
+            <label for="fechaDiagnostico">Fecha de Diagnóstico:</label>
+            <input type="date" id="fechaDiagnostico" name="fechaDiagnostico" required autocomplete="off"><br>
+
+            <label for="condicionesMedicas">Condiciones Médicas:</label>
+            <input type="text" id="condicionesMedicas" name="condicionesMedicas" placeholder="Alguna enfermedad adicional" maxlength="200" required autocomplete="off">
+
+            <label for="tratamientosMedicos">Tratamientos Médicos:</label>
+            <input type="text" id="tratamientosMedicos" name="tratamientosMedicos"  placeholder="Que más necesita a parte de medicina" maxlength="200" required autocomplete="off">
+
+            <div id="alergiasContainer" style="margin-bottom: 1%">
+                <label for="alergias">Alergias:</label>
+                <select id="alergias" class="alergia" name="alergias" onchange="mostrarOtraAlergia(this.value)" required="">
+                    <option disabled="" selected value="selecciona">Selecciona alguna alergia</option>
+                    <option value="polen">Polen</option>
+                    <option value="frutas">Frutas</option>
+                    <option value="frutos Secos">Frutos Secos</option>
+                    <option value="otros">Otra</option>
+                </select>
+            </div>
+            <button type="button" onclick="agregarAlergia()">Agregar otra alergia</button><br><br>
+
+            <div id="otraAlergia">
+                <label for="otraAlergiaInput">Cual:</label>
+                <input type="text" id="otraAlergiaInput" name="otraAlergia" placeholder="Alergia/s que padece" maxlength="200" autocomplete="off">
+            </div>
+
+            <label for="registroVisitas">Registro de Visitas:</label>
+            <input type="number" id="registroVisitas" name="registroVisitas" placeholder="Cuantas veces ha ido a revisión"  required autocomplete="off">
+
+            <div id="medicamentosContainer">
+                    <label for="listaMedicamentos">Lista de Medicamentos:</label>
+                    <select  id="listaMedicamentos" class="medicamento" name="medi" required="">
+                        <option disabled="" selected  value="selecciona">Selecciona algun medicamento</option>
+                    <option value="paracetamol">Paracetamol</option>
+                    <option value="ibuprofeno">Ibuprofeno</option>
+                    <option value="amoxicilina">Amoxicilina</option>
+                    </select>
+                </div>
+            <button type="button" onclick="agregarMedicamento()">Agregar otro medicamento</button><br>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("otraAlergia").style.display = "none";
+        });
+
+        function mostrarOtraAlergia(valor) {
+            var otraAlergiaDiv = document.getElementById("otraAlergia");
+
+            if (valor === "otros") {
+                otraAlergiaDiv.style.display = "block";
+            } else {
+                otraAlergiaDiv.style.display = "none";
+            }
+        }
+        
+    function agregarMedicamento() {
+        var container = document.getElementById("medicamentosContainer");
+        var nuevoMedicamento = document.querySelector(".medicamento").cloneNode(true);
+        container.appendChild(nuevoMedicamento);
+    }
+    function agregarAlergia() {
+            var container = document.getElementById("alergiasContainer");
+            var nuevaAlergia = document.querySelector(".alergia").cloneNode(true);
+            container.appendChild(nuevaAlergia);
+        }
+    </script>
+</body>
+</html>

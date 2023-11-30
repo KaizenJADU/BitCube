@@ -15,6 +15,44 @@
     <link rel="stylesheet" href="stylefooterandheader.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scriptprincipal.js"></script>
+    
+<style>
+    .aviso-container {
+       display: none;
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       background-color: #f8d7da;
+       color: #721c24;
+       padding: 10px;
+       text-align: center;
+       z-index: 1000;
+    }
+    #sesion,
+    #cerrarAviso {
+       padding: 8px 20px;
+       font-size: 16px;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       color: #fff;
+       }
+
+    #sesion{
+      background-color: #007BFF; 
+    }
+
+    #cerrarAviso {
+      background-color: #DC3545; 
+    }
+    #sesion:hover{
+      background-color: #0056b3; 
+    }
+    #cerrarAviso:hover {
+       background-color: #a52a2a;
+    }
+</style>
 </head>
 
 <body>
@@ -68,7 +106,12 @@
         <div id="calendar"></div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
         <script src="calendar.js"></script>
-        <input type="submit" value="Agregar actividad">
+        <input type="submit" class="raise" onclick="mostrarAviso()" value="Agregar actividad">
+    <div id="aviso" class="aviso-container">
+        <p>Bienvenido al calendario. Para utilizar este contenido debes Iniciar sesión.</p>
+        <button id="sesion" onclick="irALogin()">Iniciar Sesión</button>
+        <button id="cerrarAviso" onclick="cerrarAviso()">Cerrar</button>
+    </div>
     <footer>
        <div>
             <span class="logo">Bit-Cube</span>
@@ -137,7 +180,24 @@
        </div>
         <script src="scriptfooter.js"></script>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            mostrarAviso();
+        });
 
+        function mostrarAviso() {
+            var aviso = document.getElementById("aviso");
+            aviso.style.display = "block";
+        }
+
+        function cerrarAviso() {
+            var aviso = document.getElementById("aviso");
+            aviso.style.display = "none";
+        }
+         function irALogin() {
+        window.location.href = "login.jsp";
+    }
+    </script>
 </body>
 
 </html>

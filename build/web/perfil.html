@@ -10,10 +10,50 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="styleperfil.css">
     <link rel="stylesheet" href="stylefooterandheader.css">
+    <link rel="stylesheet" href="styleperfil.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scriptprincipal.js"></script>
+    <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>
+
+
+<style>
+    .aviso-container {
+       display: none;
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       background-color: #f8d7da;
+       color: #721c24;
+       padding: 10px;
+       text-align: center;
+       z-index: 1000;
+    }
+    #sesion,
+    #cerrarAviso {
+       padding: 8px 20px;
+       font-size: 16px;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       color: #fff;
+       }
+
+    #sesion{
+      background-color: #007BFF; 
+    }
+
+    #cerrarAviso {
+      background-color: #DC3545; 
+    }
+    #sesion:hover{
+      background-color: #0056b3; 
+    }
+    #cerrarAviso:hover {
+       background-color: #a52a2a;
+    }
+</style>
 </head>
 
 <body>
@@ -63,13 +103,97 @@
             </ul>
         </div>
     </header>
-   <div style="position: relative; width: 100%; ">
-       <img src="imagenes/autismo5.jpg" alt="alt" style=" width: 100%;">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;
-         background: rgba(250, 236, 225 , 0.45); color: black; font-size: 24px; font-weight: bold; width: 50%; height: auto">
-        Perfil
-        <p>Aquí puedes modficiar tu perfil</p>
-        </div>
+ <div class="container">
+  <div id="logos"><h1 class="logos"></h1>
+    <div class="CTA">
+      <h1></h1>
+      </div>
+  </div>
+  <div class="leftbox">
+      <nav class="navba">
+      <a id="profile" class="activee"><i class="fa-solid fa-user" style="color: #ffffff;"></i></a>
+      <a id="payment"><i class="fa-solid fa-child-reaching" style="color: #ffffff;"></i></a>
+      <a id="subscription"><i class="fa-solid fa-stethoscope" style="color: #ffffff;"></i></a>
+      <a id="privacy"><i class="fa-solid fa-chart-simple" style="color: #ffffff;"></i></a>
+      <a id="settings"><i class="fa-solid fa-gear" style="color: #ffffff;"></i></a>
+    </nav>
+  </div>
+  <div class="rightbox">
+    <div class="profile">
+      <h1></h1>
+      <h2></h2>
+      <p class="p"> <button class="btn"></button></p>
+      <h2></h2>
+      <p class="p"> </p>
+      <h2></h2>
+      <p class="p"></p>
+      <h2></h2>
+      <p class="p"> <button class="btn"></button></p>
+      <h2> </h2>
+      <p class="p"><button class="btn"></button></p>
+    </div>
+    
+    <div class="payment noshow">
+      <h1></h1>
+      <h2></h2>
+      <p class="p"> <button class="btn"></button></p>
+      <h2></h2>
+      <p class="p"><button class="btn"></button></p>
+      <h2></h2>
+      <p class="p"></p>
+      <h2></h2>
+      <p class="p"><button class="btn"></button></p>
+      <h2></h2>
+      <p class="p"><button class="btn"></button></p>
+    </div>
+
+    <div class="subscription noshow">
+        <h1></h1>
+        <h2></h2>
+        <p class="p"><button class="btn"></button></p>
+        <h2></h2>
+        <p class="p"></p>
+        <h2></h2>
+        <p class="p"><button class="btn"></button></p>
+        <h2></h2>
+        <p class="p"><button class="btn"></button></p>
+        <h2></h2>
+        <p class="p"></p>
+    </div>
+
+    <div class="privacy noshow">
+        <h1></h1>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+    </div>
+ <div class="settings noshow">
+        <h1></h1>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+        <h2><button class="btn"></button></h2>
+        <p class="p"></p>
+    </div>
+    
+  </div>
+</div>
+     <div id="aviso" class="aviso-container">
+         <p>Bienvenido al perfil. Para utilizar este contenido debes Iniciar sesión.</p>
+        <button id="sesion" onclick="irALogin()">Iniciar Sesión</button>
+        <button id="cerrarAviso" onclick="cerrarAviso()">Cerrar</button>
     </div>
     <footer>
        <div>
@@ -139,6 +263,25 @@
        </div>
         <script src="scriptfooter.js"></script>
     </footer>
+    <script src="scriptperfi.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            mostrarAviso();
+        });
+
+        function mostrarAviso() {
+            var aviso = document.getElementById("aviso");
+            aviso.style.display = "block";
+        }
+
+        function cerrarAviso() {
+            var aviso = document.getElementById("aviso");
+            aviso.style.display = "none";
+        }
+         function irALogin() {
+        window.location.href = "login.jsp";
+    }
+    </script>
 </body>
 
 </html>

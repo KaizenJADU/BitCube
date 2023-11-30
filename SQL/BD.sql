@@ -24,17 +24,42 @@ create table
         tipoInteres varchar (20)
     );
 
+#Tabla Diagnostico 
+
+create table
+	Diagnostico(
+		idAntecedentes int auto_increment primary key,
+			fechaDiagnostico date,
+            condicionesMedicas varchar (200),
+            tratamientosMedicos varchar (200),
+            alergias varchar (200),
+            registroVisitas varchar(200),
+            listaMedicamentos varchar (200));
+            
+#Tabla Progreso 
+
+create table
+	Progreso(
+		idProgreso int auto_increment primary key,
+        porcenrtaje int,
+        difPorcentaje int);
+            
 #Tabla Infante
 
 create table
     Infante(
         idInfante int auto_increment primary key,
         idInteres int,
+        idAntecedentes int,
+        idProgreso int,
         nombreInfante varchar (50),
         apePatInfante varchar(50),
         apeMatInfante varchar(50),
         edadInfante int,
-        foreign key(idInteres) references Interes(idInteres)
+        sexo char(10),
+        foreign key(idInteres) references Interes(idInteres),
+        foreign key(idAntecedentes) references Diagnostico(idAntecedentes),
+        foreign key(idProgreso) references Progreso(idProgreso)
     );
 
 #Tabla Usuario
@@ -47,12 +72,10 @@ create table
         nombreUsuario varchar(20),
         apePatUsuario varchar(20),
         apeMatUsuario varchar(20),
-        correoUsuario varchar(20),
+        correoUsuario varchar(100),
         telUsuario varchar(15),
         contrasena VARCHAR(100),
-        direccionTutor varchar(20),
         RFC varchar(20),
-        CURP varchar (50),
         codigo int,
         foreign key(idTipoUsuario) references TipoUsuario(idTipoUsuario),
         foreign key(idInfante) references Infante(idInfante)
@@ -74,7 +97,8 @@ create table
 create table
     ImagenPictograma(
         idImagen int primary key auto_increment,
-        imagen varbinary(50) NOT NULL,
+        imagen LONGBLOB NOT NULL,
+        audio blob,
         significado varchar (50)
     );
 
@@ -120,11 +144,18 @@ create table
 
 select * from TipoUsuario;
 
+select * from Diagnostico;
+
 select * from Interes;
 
 select * from Infante;
 
-select * from Usuario;
+select * from Usuario; 
+insert into  Usuario(idTipoUsuario,nombreUsuario,apePatUsuario,apeMatUsuario,correoUsuario,telUsuario,contrasena) 
+values ('1','Alan','Leaños','Gutiérrez','leanos.gutierrez.alanrodrigo@gmail.com','5510479207','1234567890')
+,('1','Jessica','Leal','Barcenas','leal.barcenas.jessica@gmail.com','5510479237','12345678'),
+('1','Daniel','Mendoza','Jimenez','mendoza.jimenez.danielemiliano@gmail.com','5510479107','1234567'),
+('1','Ulises','Perez','Alvarez','perez.alvarez.ulises@gmail.com','5510479807','123456');
 
 select * from Calendario;
 
@@ -135,3 +166,5 @@ select * from TipoPictograma;
 select * from Pictograma;
 
 select * from RelUsuComent;
+select * from Comentario;
+
