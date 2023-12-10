@@ -8,8 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal user</title>
-
+    <title>Principal</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
@@ -155,6 +154,7 @@ Diversas categorías de interés para que infante tenga una amplia variedad de t
                 <ul class="footer-cat-links">
                     <li><a href="user.jsp"><span>Principal</span></a></li>
                     <li><a href="perfil.jsp"><span>Perfil</span></a></li>
+                    <li><a href="soporte.jsp"><span>Soporte</span></a></li>
                     <li><a href="Calendario.jsp"><span>Calendario</span></a></li><br><br><br><br><br>
                 </ul>
             </div>
@@ -195,6 +195,7 @@ Diversas categorías de interés para que infante tenga una amplia variedad de t
        </div>
         <script src="../scriptfooter.js"></script>
     </footer>
+
                     <%
         }
            }

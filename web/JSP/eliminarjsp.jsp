@@ -33,5 +33,5 @@
         }
     }
 
-    response.sendRedirect(request.getHeader("referer"));
+    response.sendRedirect("adminusuarios.jsp");
 %>

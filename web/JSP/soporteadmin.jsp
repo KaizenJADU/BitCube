@@ -1,26 +1,30 @@
-<%@page session="true"%>
-<%@page import="java.sql.*,conexion.conectadita" %>
+<%@page import="conexion.conectadita"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.sql.SQLException"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html>
-    
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal Admin</title>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Soporte</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../styleprincipal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../stylefooterandheader.css">
+    <link rel="stylesheet" href="../stylesoporteadmin.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../scriptprincipal.js"></script>
+    <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-    <body>
-        <%
-        HttpSession sesion = request.getSession();
+<body>
+    <%
+     HttpSession sesion = request.getSession();
         String usuario;
         String idTipo;
         String contra;
@@ -42,8 +46,11 @@
                 results = pstat.executeQuery();
 
                 while (results.next()) {
-    %>
-        <header>
+                int idUsuario = results.getInt("idUsuario"); 
+                String nombrusuario = results.getString("nombreUsuario");
+        %>
+        
+     <header>
         <div class="navbar">
             <div class="navbar_wrapper">
                 <nav class="navbar_menu">
@@ -57,10 +64,10 @@
                         <span></span>
                     </div>
                     <ul class="navbar_nav">
-                        <li class="navbar_link after-transform"><a class="active" href="useradmin.jsp">Principal</a></li>
+                        <li class="navbar_link after-transform"><a href="useradmin.jsp">Principal</a></li>
                         <li class="navbar_link after-transform"><a href="adminusuarios.jsp">Usuarios</a></li>
                         <li class="navbar_link after-transform"><a href="adminpictograma.jsp">Pictogramas</a></li>
-                        <li class="navbar_link after-transform"><a href="soporteadmin.jsp">Soporte</a></li>
+                        <li class="navbar_link after-transform"><a class="active"  href="soporteadmin.jsp">Soporte</a></li>
                         <li class="navbar_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
                     </ul>
                 </nav>
@@ -71,24 +78,37 @@
                 <li class="navbar-responsive_link after-transform"><a class="active" href='useradmin.jsp'>Principal</a></li>
                 <li class="navbar-responsive_link after-transform"><a href='adminusuarios.jsp'>Usuarios</a></li>
                 <li class="navbar-responsive_link after-transform"><a href="adminpictograma.jsp">Pictogramas</a>
-                <li class="navbar-responsive_link after-transform"><a href="soporteadmin.jsp">Soporte</a>
+                <li class="navbar-responsive_link after-transform"><a class="active" href="soporteadmin.jsp">Soporte</a>
                 </li>
                 <li class="navbar-responsive_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
             </ul>
         </div>
     </header>
-        <div class="bienvenida" style="display: grid; margin: 10% 0% 10% 9%;">
-    <h1 style="font-size: 10em">Bienvenido <% out.print(results.getString("nombreUsuario")); %></h1>
+   <div>
+      
+        <div id="chat-container" style="background: white"></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; margin: 20px">
+            <input type="text" id="message-input" placeholder="Escribe un mensaje...">
+            <button id="send-button" onclick="sendMessage()"><i class="fa-solid fa-paper-plane" style="color: #00b3ff; font-size: 15px"></i></button>
         </div>
-         <footer>
+    </div>
+    
+<footer>
        <div>
             <span class="logo">Bit-Cube</span>
        </div>
        <div class="row"> 
             <div class="col-3">
                 <div class="link-cat" onclick="footerToggle(this)">
+                    <span class="footer-toggle"></span>
+                    <span class="footer-cat">Links Populares</span>
                 </div>
-               
+                <ul class="footer-cat-links">
+                    <li><a href="Pictogramas.jsp"><span>Pictogramas</span></a></li>
+                    <li><a href="Videojuegos.jsp"><span>Videojuegos</span></a></li>
+                    <li><a href="Videos.jsp"><span>Videos</span></a></li>
+                    <li><a href="Categorias.jsp"><span>Categorias</span></a></li>
+                </ul>
             </div>
             <div class="col-3">
                 <div class="link-cat" onclick="footerToggle(this)">
@@ -96,10 +116,9 @@
                     <span class="footer-cat">Links Rapidos</span>
                 </div>
                 <ul class="footer-cat-links">
-                    <li><a href="useradmin.jsp"><span>Principal</span></a></li>
-                    <li><a href="adminusuarios.jsp"><span>Usuarios</span></a></li>
-                    <li><a href="adminpictograma.jsp"><span>Pictogramas</span></a></li>
-                    <li><a href="comentarios.jsp"><span>Comenatrios</span></a></li><br><br><br><br><br>
+                    <li><a href="user.jsp"><span>Principal</span></a></li>
+                    <li><a href="perfil.jsp"><span>Perfil</span></a></li>
+                    <li><a href="Calendario.jsp"><span>Calendario</span></a></li><br><br><br><br><br>
                 </ul>
             </div>
             <div class="col-3" id="newsletter">
@@ -139,8 +158,76 @@
        </div>
         <script src="../scriptfooter.js"></script>
     </footer>
-                 <%
+
+        <script>
+        function cifrar(message) {
+            let mensajeCifrado = "";
+            const mensajeMayusculas = message.toUpperCase();  
+
+            for (let i = 0; i < mensajeMayusculas.length; i++) {
+                const c = mensajeMayusculas.charAt(i);
+                if (c >= 'A' && c <= 'Z') {
+                    const base = 'A';
+                    const letraCifrada = String.fromCharCode(base.charCodeAt(0) + ('Z'.charCodeAt(0) - c.charCodeAt(0)));
+                    mensajeCifrado += letraCifrada;
+                } else {
+                    mensajeCifrado += c;
+                }
+            }
+
+            return mensajeCifrado;
         }
+
+      function descifrar(mensajeCifrado) {
+    let mensajeDescifrado = "";
+    const mensajeMayusculas = mensajeCifrado.toUpperCase();  
+
+    for (let i = 0; i < mensajeMayusculas.length; i++) {
+        const c = mensajeMayusculas.charAt(i);
+        if (c >= 'A' && c <= 'Z') {
+            const base = 'A';
+            const letraDescifrada = String.fromCharCode(base.charCodeAt(0) + ('Z'.charCodeAt(0) - c.charCodeAt(0)));
+            mensajeDescifrado += letraDescifrada;
+        } else {
+            mensajeDescifrado += c;
+        }
+    }
+
+    return mensajeDescifrado.toLowerCase(); 
+}
+
+
+    const socket = new WebSocket("ws://localhost:8080/Bit-Cube/chat/admin/<%= idUsuario %> , <%= nombrusuario %>");
+
+       socket.onmessage = function(event) {
+        const mensajeCifrado = event.data;
+        const mensajeDescifrado = descifrar(mensajeCifrado);
+        appendMessage(mensajeDescifrado);
+        console.log("Mensaje cifrado recibido:", mensajeCifrado);
+    };
+
+
+        function sendMessage() {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value.trim();
+
+            if (message !== "") {
+                const mensajeCifrado = cifrar(message);
+                socket.send(mensajeCifrado);
+                console.log("Mensaje cifrado enviado:", mensajeCifrado);
+                messageInput.value = "";
+            }
+        }
+
+        function appendMessage(message) {
+        const chatContainer = document.getElementById("chat-container");
+        const messageElement = document.createElement("div");
+        messageElement.textContent = message;
+        chatContainer.appendChild(messageElement);
+    }
+    </script>
+    <%
+          }
            }
           catch (SQLException error) {
                 out.print(error.toString());
@@ -151,5 +238,5 @@
             out.println("<script>location.replace('login.jsp');</script>");
             }
         %>
-    </body>
+</body>
 </html>

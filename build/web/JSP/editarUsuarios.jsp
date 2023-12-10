@@ -12,7 +12,7 @@
             String apePatUsuario = request.getParameter("ap_paterno");
             String apeMatUsuario = request.getParameter("ap_materno");
             String correoUsuario = request.getParameter("email");
-             int telUsuario = Integer.parseInt(request.getParameter("phone"));
+             String telUsuario = request.getParameter("phone");
             String contrasena = request.getParameter("pass");
             String RFC = request.getParameter("rfc");
             int codigo = Integer.parseInt(request.getParameter("cod"));
@@ -30,7 +30,7 @@
             updateStatement.setString(2, apePatUsuario);
             updateStatement.setString(3, apeMatUsuario);
             updateStatement.setString(4, correoUsuario);
-            updateStatement.setInt(5, telUsuario);
+            updateStatement.setString(5, telUsuario);
             updateStatement.setString(6, contrasena);
             updateStatement.setString(7, RFC);
             updateStatement.setInt(8, codigo);

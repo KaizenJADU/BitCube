@@ -29,9 +29,6 @@ try {
                 deleteInfanteStatement.executeUpdate();
             }
 
-            connection.commit();
-
-            response.sendRedirect("adminusuarios.jsp");
         }
     } catch (SQLException e) {
         connection.rollback();
@@ -41,19 +38,17 @@ try {
     }
 
 } catch (SQLException e) {
-    // Manejar la excepción según tus necesidades
     e.printStackTrace();
 } finally {
-    // Cerrar la conexión en el bloque finally para asegurarse de que siempre se cierre
     try {
         if (connection != null) {
             connection.close();
         }
     } catch (SQLException e) {
-        // Manejar la excepción según tus necesidades
         e.printStackTrace();
     }
 }
+response.sendRedirect("adminusuarios.jsp");
 
 
 %>

@@ -22,7 +22,7 @@
     </head>
     
     <body>
-       <header>
+        <header>
         <div class="navbar">
             <div class="navbar_wrapper">
                 <nav class="navbar_menu">
@@ -39,7 +39,7 @@
                         <li class="navbar_link after-transform"><a href="useradmin.jsp">Principal</a></li>
                         <li class="navbar_link after-transform"><a class="active" href="adminusuarios.jsp">Usuarios</a></li>
                         <li class="navbar_link after-transform"><a href="adminpictograma.jsp">Pictogramas</a></li>
-                        <li class="navbar_link after-transform"><a href="comentarios.jsp">Comentarios</a></li>
+                        <li class="navbar_link after-transform"><a href="soporteadmin.jsp">Soporte</a></li>
                         <li class="navbar_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
                     </ul>
                 </nav>
@@ -49,8 +49,8 @@
             <ul class="navbar-responsive_nav">
                 <li class="navbar-responsive_link after-transform"><a href='useradmin.jsp.jsp'>Principal</a></li>
                 <li class="navbar-responsive_link after-transform"><a class="active" href='adminusuarios.jsp'>Usuarios</a></li>
-                <li class="navbar-responsive_link after-transform"><a href="adminpictograma.jsp">Principal</a>
-                <li class="navbar-responsive_link after-transform"><a href="comentarios.jsp">Comenatrios</a>
+                <li class="navbar-responsive_link after-transform"><a href="adminpictograma.jsp">Pictogramas</a>
+                <li class="navbar-responsive_link after-transform"><a href="soporteadmin.jsp">Soporte</a>
                 </li>
                 <li class="navbar-responsive_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
             </ul>
@@ -67,7 +67,6 @@
             <th>Materno Infante</th>
             <th>Correo del Usuario</th>
             <th>Telefeno del Usuario</th>
-            <th>Contraseña</th>
             <th>RFC</th>
             <th>Código</th>
             <th>Acciones</th>
@@ -111,7 +110,6 @@
     <td><%= apeMatInfante %></td>
     <td><%= correoUsuario %></td>
     <td><%= telUsuario %></td>
-    <td><%= contrasena %></td>
     <td><%= RFC %></td>
     <td><%= codigo %></td>
     <td class="action-buttons">
@@ -124,81 +122,71 @@
   <div id="editemployeemodal_<%= idUsuario %>" class="modal-fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="editarUsuarios.jsp" method="post" onsubmit="validateCaptcha()" id="registro">
-                            <div class="input-row">
-                                    <div class="input-group">
-                                            <label for="nombre">Nombre:</label>
-                                            <input type="text" id="nombre" name="nombre"
-                                                   value="<% out.print(resultSet.getString("nombreUsuario")); %>"placeholder="P. ej., Julia" autocomplete="off" required/>
-                                    </div>
-                                    <div class="input-group">
-                                            <label for="ap_paterno">Apellido paterno:</label>
-                                            <input type="text" id="ap_paterno"
-                                                   value="<% out.print(resultSet.getString("apePatUsuario")); %>" name="ap_paterno" placeholder="P. ej., García" autocomplete="off" required/>
-                                    </div>
-                            </div>
-                            <div class="input-row">
-                                    <div class="input-group">
-                                            <label for="ap_materno">Apellido materno:</label>
-                                            <input type="text" id="ap_materno" value="<% out.print(resultSet.getString("apeMatUsuario")); %>" name="ap_materno" placeholder="P. ej., García" autocomplete="off" required/>
-                                    </div>
-                                    <div class="input-group">
-                                            <label for="email">Email:</label>
-                                            <input type="email" id="email" name="email" value="<% out.print(resultSet.getString("correoUsuario")); %>"
-                                                   placeholder="P. ej., email@ejemplo.com" autocomplete="off"/>
-                                    </div>
-                            </div>
-                            <div class="input-row">
-                                    <div class="input-group">
-                                            <label for="telefono">Teléfono:</label>
-                                            <input type="number" id="telefono"
-                                                   value="<% out.print(resultSet.getString("telUsuario")); %>" name="phone" placeholder="P. ej., 555-555-555" autocomplete="off"/>
-                                    </div>
-                                    <div class="input-group">
-                                            <label for="contrasena">Contraseña:</label>
-                                            <input type="password" id="contrasena" name="pass" 
-                                                   value="<% out.print(resultSet.getString("contrasena")); %>" placeholder="Contraseña" autocomplete="off" required/>
-                                    </div>
-                            </div>
-                            <div class="input-row">
-                                    <div class="input-group">
-                                            <label for="rfc">RFC:</label>
-                                            <input type="text" id="rfc" name="rfc" placeholder="RFC" 
-                                                   value="<% out.print(resultSet.getString("RFC")); %>" autocomplete="off" required/>
-                                    </div>
-                                    <div class="input-group">
-                                            <label for="codigo">Código:</label>
-                                            <input type="password" id="codigo" value="<% out.print(resultSet.getString("codigo")); %>" name="cod" placeholder="Ingresa un codigo" autocomplete="off" required/>
-                                        </div>
-                            </div>
-                           
-                            <div class="ninos">
-                                    <h2 style="margin-top: 10px; margin-bottom: 0px;">Datos del niño</h2>
-                                    <div class="input-row">
-                                            <div class="input-group">
-                                                <input type="text" name="nameni" value="<% out.print(resultSet.getString("nombreInfante")); %>" placeholder="Nombre del niño" autocomplete="off" required/>
-                                                <input type="number" name="edad" value="<% out.print(resultSet.getInt("edadInfante")); %>" placeholder="Edad" />
-                                            </div>
-                                        <div class="input-group">
-                                            <input type="text" name="ap_pater_ni" value="<% out.print(resultSet.getString("apePatInfante")); %>" placeholder="Apellido paterno del niño" autocomplete="off" required/>
-                                            <input type="text" name="ap_mater_ni"  value="<% out.print(resultSet.getString("apeMatInfante")); %>" placeholder="Apellido materno del niño" autocomplete="off" required/>
-                                        </div>
-                                    </div>
-                                    </div>
-                                     <div class="input-row">
-        <div class="input-group">
-            <input type="radio" name="sexo" id="hombre_<%= idUsuario %>" value="Hombre" required/>
-            <label class="radio" for="hombre_<%= idUsuario %>">Hombre</label>
-        </div>
-        <div class="input-group" style="margin-bottom: 3%;">
-            <input type="radio" name="sexo" id="mujer_<%= idUsuario %>" value="Mujer" required/>
-            <label class="radio" for="mujer_<%= idUsuario %>">Mujer</label>
-        </div>
-    </div>
-                                            <input type="hidden" name="idUsuario" value="<% out.print(resultSet.getInt("IdUsuario"));%>" >
-                            <input type="submit" id="enviar" name="registrar" value="Registrarse">
-                    </form>
+            <i class="cerrar-icono bx bx-x" title="Cerrar" onclick="cerrarModaledit(<%= idUsuario %>)"  style="font-size: 25px; margin-right: 25em"></i>
+          <form action="editarUsuarios.jsp" method="post"  id="registro">
+                <h2>Datos del Tutor</h2>
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" value="<% out.print(resultSet.getString("nombreUsuario")); %>" placeholder="P. ej., Julia" autocomplete="off" required class="miClase" />
+                </div>
+                <div class="input-group">
+                    <label for="ap_paterno">Apellido paterno:</label>
+                    <input type="text" id="ap_paterno" value="<% out.print(resultSet.getString("apePatUsuario")); %>" name="ap_paterno" placeholder="P. ej., García" autocomplete="off" required class="miClase" />
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="ap_materno">Apellido materno:</label>
+                    <input type="text" id="ap_materno" value="<% out.print(resultSet.getString("apeMatUsuario")); %>" name="ap_materno" placeholder="P. ej., García" autocomplete="off" required class="miClase" />
+                </div>
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="<% out.print(resultSet.getString("correoUsuario")); %>" placeholder="P. ej., email@ejemplo.com" autocomplete="off" class="miClase" />
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="number" id="telefono" value="<% out.print(resultSet.getString("telUsuario")); %>" name="phone" placeholder="P. ej., 555-555-555" autocomplete="off" class="miClase" />
+                </div>
+                <div class="input-group">
+                    <label for="rfc">RFC:</label>
+                    <input type="text" id="rfc" name="rfc" placeholder="RFC" value="<% out.print(resultSet.getString("RFC")); %>" autocomplete="off" required class="miClase" />
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="codigo">Código:</label>
+                    <input type="password" id="codigo" value="<% out.print(resultSet.getString("codigo")); %>" name="cod" placeholder="Ingresa un codigo" autocomplete="off" required class="miClase" />
+                </div>
+            </div>
 
+            <div class="ninos">
+                <h2 style="margin-top: 10px; margin-bottom: 0px;">Datos del Infante</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <input type="text" name="nameni" value="<% out.print(resultSet.getString("nombreInfante")); %>" placeholder="Nombre del niño" autocomplete="off" required class="miClase" />
+                        <input type="number" name="edad" value="<% out.print(resultSet.getInt("edadInfante")); %>" placeholder="Edad" class="miClase" />
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="ap_pater_ni" value="<% out.print(resultSet.getString("apePatInfante")); %>" placeholder="Apellido paterno del niño" autocomplete="off" required class="miClase" />
+                        <input type="text" name="ap_mater_ni" value="<% out.print(resultSet.getString("apeMatInfante")); %>" placeholder="Apellido materno del niño" autocomplete="off" required class="miClase" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <input type="radio" name="sexo" id="hombre_<%= idUsuario %>" value="Hombre" required class="miClase" />
+                    <label class="radio" for="hombre_<%= idUsuario %>">Hombre</label>
+                </div>
+                <div class="input-group" style="margin-bottom: 3%;">
+                    <input type="radio" name="sexo" id="mujer_<%= idUsuario %>" value="Mujer" required class="miClase" />
+                    <label class="radio" for="mujer_<%= idUsuario %>">Mujer</label>
+                </div>
+            </div>
+    </form>
         </div>
     </div>
 </div>
@@ -316,8 +304,8 @@ function mostraredit(id,sexo){
             document.getElementById('mujer_' + id).checked = true;
         }
     }
-        function cerrarModaledit() {
-            document.getElementById('editemployeemodal').style.display = 'none';
+        function cerrarModaledit(id) {
+             document.getElementById('editemployeemodal_' + id).style.display = 'none';
         }
         function mostrarModal(id) {
               document.getElementById('deleteEmployeeModal').style.display = 'block';

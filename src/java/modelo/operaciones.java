@@ -3,7 +3,6 @@ package modelo;
 
 import conexion.conectadita;
 import org.mindrot.jbcrypt.BCrypt;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

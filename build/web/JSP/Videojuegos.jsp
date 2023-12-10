@@ -160,8 +160,7 @@
         <div class="swiper-pagination"></div>
       </div>
   </form>
-
-    <footer>
+ <footer>
        <div>
             <span class="logo">Bit-Cube</span>
        </div>
@@ -186,6 +185,7 @@
                 <ul class="footer-cat-links">
                     <li><a href="user.jsp"><span>Principal</span></a></li>
                     <li><a href="perfil.jsp"><span>Perfil</span></a></li>
+                    <li><a href="soporte.jsp"><span>Soporte</span></a></li>
                     <li><a href="Calendario.jsp"><span>Calendario</span></a></li><br><br><br><br><br>
                 </ul>
             </div>
@@ -226,6 +226,7 @@
        </div>
         <script src="../scriptfooter.js"></script>
     </footer>
+
     <script>
      
         var swiper = new Swiper(".swiper", {

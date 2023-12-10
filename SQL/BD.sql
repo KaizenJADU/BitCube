@@ -4,6 +4,7 @@ create database Bitcube;
 
 use Bitcube;
 
+
 #Tabla TipoUsuario
 
 create table
@@ -138,7 +139,7 @@ create table
         idRelUsuComent int primary key auto_increment,
         idUsuario int,
         idComentario int,
-        foreign key(idUsuario) references Usuario(idUsuario),
+        foreign key(idUsuario) references Usuario(IdUsuario),
         foreign key(idComentario) references Comentario(idComentario)
     );
 
@@ -146,7 +147,7 @@ select * from TipoUsuario;
 
 select * from Diagnostico;
 
-select * from Interes;
+select * from Interes;	
 
 select * from Infante;
 

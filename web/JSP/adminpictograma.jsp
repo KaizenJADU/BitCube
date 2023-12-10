@@ -41,7 +41,7 @@
                         <li class="navbar_link after-transform"><a href="useradmin.jsp">Principal</a></li>
                         <li class="navbar_link after-transform"><a href="adminusuarios.jsp">Usuarios</a></li>
                         <li class="navbar_link after-transform"><a class="active" href="adminpictograma.jsp">Pictogramas</a></li>
-                        <li class="navbar_link after-transform"><a href="comentarios.jsp">Comentarios</a></li>
+                        <li class="navbar_link after-transform"><a href="soporteadmin.jsp">Soporte</a></li>
                         <li class="navbar_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
                     </ul>
                 </nav>
@@ -49,10 +49,10 @@
         </div>
         <div class="navbar-responsive">
             <ul class="navbar-responsive_nav">
-                <li class="navbar-responsive_link after-transform"><a href='useradmin.jsp.jsp'>Principal</a></li>
+                <li class="navbar-responsive_link after-transform"><a class="active" href='useradmin.jsp.jsp'>Principal</a></li>
                 <li class="navbar-responsive_link after-transform"><a href='adminusuarios.jsp'>Usuarios</a></li>
-                <li class="navbar-responsive_link after-transform"><a class="active" href="adminpictograma.jsp">Principal</a>
-                <li class="navbar-responsive_link after-transform"><a href="comentarios.jsp">Comenatrios</a>
+                <li class="navbar-responsive_link after-transform"><a class="active" href="adminpictograma.jsp">Pictogramas</a>
+                <li class="navbar-responsive_link after-transform"><a href="soporteadmin.jsp">Soporte</a>
                 </li>
                 <li class="navbar-responsive_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
             </ul>
@@ -118,7 +118,7 @@
                                 <input type="file" name="auds" id="aud" value="<% out.print(resultSet.getBlob("audio")); %>" accept="audio/mp3">
 
                                 <label for="significadoss">Escribe el significado:</label>
-                                <input type="text" name="significadoss" id="significad" 
+                                <input type="text"  class="text" name="significadoss" id="significad" 
                                        value="<% out.print(resultSet.getString("significado")); %>" autocomplete="off" />
 
                                 <input type="hidden" name="idpic" id="pictogramaIds" value="<% out.print(resultSet.getInt("idImagen"));%>" />
@@ -153,7 +153,7 @@
                      <br><input type="file" name="audio" id="audio" accept="audio/*" required>
             </td>
             <td style="border-bottom: 0;">
-                     <br><input type="text" name="significado" id="significados" placeholder="P. ej., Escuchando música" required="required" />
+                <br><input type="text" class="text" name="significado" id="significados" placeholder="P. ej., Escuchando música" required="required" />
             </td>
             <td style="border-bottom: 0;">
                 <button class="btn" type="submit" ><i class="fa-solid fa-plus" style="color: #fff;"></i></button>

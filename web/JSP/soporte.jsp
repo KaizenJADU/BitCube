@@ -1,27 +1,25 @@
-<%@page session="true"%>
-<%@page import="java.sql.*,conexion.conectadita" %>
+<%@page import="conexion.conectadita"%>
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page session="true"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Soporte</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="../styleprincipal.css">
     <link rel="stylesheet" href="../stylefooterandheader.css">
+    <link rel="stylesheet" href="../stylesoporteadmin.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../scriptprincipal.js"></script>
+    <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-     <%
-        HttpSession sesion = request.getSession();
+   <%
+     HttpSession sesion = request.getSession();
         String usuario;
         String idTipo;
         String contra;
@@ -43,7 +41,9 @@
                 results = pstat.executeQuery();
 
                 while (results.next()) {
-    %>
+                    int idUsuario = results.getInt("idUsuario");
+                    String nombrusuario = results.getString("nombreUsuario");
+        %>
     <header>
         <div class="navbar">
             <div class="navbar_wrapper">
@@ -86,54 +86,19 @@
             </ul>
         </div>
     </header>
-       
-        <div class="bienvenida" style="padding:  7% 0% 0% 15%">
-             <h1>Bienvenid@ a Bit-Cube <% out.print(results.getString("nombreUsuario")); %> </h1> 
-        <p style="font-size: 1.5em; line-height: 1.6; margin-right: 20%; text-align: justify;">Bit-Cube es un sistema web y móvil dirigido a los niños con Asperger, enfocándonos en su desarrollo social y cognitivo. Los niños con esta especialidad tienden a tener menos atención a tempranas edades, por lo que el crecer tienen muchos problemas sociales, es por eso que decidimos enfocarnos en ellos. 
-        Empleando como uso administrativo principal al tutor del infante, para llevar acabo un mejor seguimiento de su tratamiento y progreso médico.
-        </p>
+    <div>
+        
+        <div id="chat-container" style="background: white"></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; margin: 20px">
+            <input type="text" id="message-input" placeholder="Escribe un mensaje...">
+            <button id="send-button" onclick="sendMessage()"><i class="fa-solid fa-paper-plane" style="color: #00b3ff; font-size: 15px"></i></button>
         </div>
-        <div class="quienes-somos" style="padding: 20% 0% 0% 40%; ">
-            <h1>¿Quienes Somos</h1>
-        </div>
-            <p style="font-size: 1.5em; line-height: 1.6; margin: 0% 20% 10% 20%; text-align: justify;">Somos un equipo formado por cuatro apasionados estudiantes de programación del CECYT 9, que se esfuerzan por marcar la diferencia en el mundo a través de nuestros proyectos con un impacto social significativo, como lo es este.</p>
-            <h1 style="text-align: center">¿Qué tiene Bit-Cube?</h1>
-            <p style="font-size: 1.5em; line-height: 1.6; margin: 0% 20% 10% 20%; text-align: justify;">Contamos con videojuegos, pictogramas, calendario y estadísticas de crecimiento que nos permiten ver la mejora progresiva del infante. 
-Diversas categorías de interés para que infante tenga una amplia variedad de temas para que pueda desarrollar sus gustos y explotar los temas que prefiera.
-</p>
-                <div class="grupo fundadores " style="padding: 0% 10% 0 10%">
-                            <div class="grupo">
-                                <img src="imagenes/" alt="alt"/>
-                                    <h3 class="titulo">
-                                            Pictogramas
-                                            <i class="decoracion"></i>
-                                    </h3>
-                                <p>Los videos adaptados para personas con autismo son secuencias visuales diseñadas considerando las necesidades específicas de este público. Estos videos pueden incluir colores y sonidos suaves, evitar estímulos sensoriales intensos y presentar información de manera clara y estructurada.</p>
-                            </div>
-                            <div class="grupo">
-                                <img src="imagenes/" alt="alt"/>
-                                    <h3 class="titulo">
-                                            Videos
-                                            <i class="decoracion"></i>
-                                    </h3>
-                                <P>Los pictogramas adaptados para personas con autismo son representaciones visuales simplificadas diseñadas para facilitar la comprensión y comunicación. Estos símbolos pueden ser utilizados en entornos como escuelas y hogares para proporcionar instrucciones claras, apoyar la estructuración del tiempo y ayudar en la expresión de emociones.</P>
-                            </div>
-                            <div class="grupo">
-                                <img src="imagenes/" alt="alt"/>
-                                    <h3 class="titulo">
-                                            Videojuegos
-                                            <i class="decoracion"></i>
-                                    </h3>
-                                <p>Los videojuegos diseñados con inclusividad para personas con autismo buscan crear experiencias de juego accesibles y adaptadas. Estos juegos pueden incorporar elementos visuales y auditivos que sean amigables para personas con sensibilidades sensoriales, ofrecer opciones de personalización y proporcionar una estructura clara en el juego. </p>
-                            </div>
-                    </div>
-          
     </div>
     <footer>
-       <div>
+        <div>
             <span class="logo">Bit-Cube</span>
-       </div>
-       <div class="row"> 
+        </div>
+        <div class="row"> 
             <div class="col-3">
                 <div class="link-cat" onclick="footerToggle(this)">
                     <span class="footer-toggle"></span>
@@ -184,30 +149,106 @@ Diversas categorías de interés para que infante tenga una amplia variedad de t
                 <a href="https://github.com/KaizenJADU"><i class="fab fa-github"></i></a>
                 <br><br>
             </div>
-       </div>
-       <div id="copyright">
-           &copy; Todos los drechos reservados 2023-2024
-       </div>
-       <div id="owner">
-           <span>
-               Hecho por <a href="http://kaizen.gerdoc.com">Kaizen</a>
-           </span>
-       </div>
+        </div>
+        <div id="copyright">
+            &copy; Todos los drechos reservados 2023-2024
+        </div>
+        <div id="owner">
+            <span>
+                Hecho por <a href="http://kaizen.gerdoc.com">Kaizen</a>
+            </span>
+        </div>
         <script src="../scriptfooter.js"></script>
     </footer>
 
-                    <%
-        }
-           }
-          catch (SQLException error) {
-                out.print(error.toString());
-            }
-            conec.close();
-          }
-            else{
-            out.println("<script>location.replace('login.jsp');</script>");
-            }
-        %>
-</body>
+    <script>
+        function cifrar(message) {
+            let mensajeCifrado = "";
+            const mensajeMayusculas = message.toUpperCase();  
 
+            for (let i = 0; i < mensajeMayusculas.length; i++) {
+                const c = mensajeMayusculas.charAt(i);
+                if (c >= 'A' && c <= 'Z') {
+                    const base = 'A';
+                    const letraCifrada = String.fromCharCode(base.charCodeAt(0) + ('Z'.charCodeAt(0) - c.charCodeAt(0)));
+                    mensajeCifrado += letraCifrada;
+                } else {
+                    mensajeCifrado += c;
+                }
+            }
+
+            return mensajeCifrado;
+        }
+
+        function descifrar(mensajeCifrado) {
+            let mensajeDescifrado = "";
+            const mensajeMayusculas = mensajeCifrado.toUpperCase();  
+
+            for (let i = 0; i < mensajeMayusculas.length; i++) {
+                const c = mensajeMayusculas.charAt(i);
+                if (c >= 'A' && c <= 'Z') {
+                    const base = 'A';
+                    const letraDescifrada = String.fromCharCode(base.charCodeAt(0) + (c.charCodeAt(0) - 'Z'.charCodeAt(0)));
+                    mensajeDescifrado += letraDescifrada;
+                } else {
+                    mensajeDescifrado += c;
+                }
+            }
+
+            return mensajeDescifrado.toLowerCase(); 
+        }
+
+        const socket = new WebSocket("ws://localhost:8080/Bit-Cube/chat/user/<%= idUsuario %> , <%= nombrusuario %>");
+
+        socket.onmessage = function(event) {
+            const mensajeCifrado = event.data;
+            const mensajeDescifrado = descifrar(mensajeCifrado);
+            appendMessage(mensajeDescifrado);
+            console.log("Mensaje cifrado recibido:", mensajeCifrado);
+        };
+
+        function sendMessage() {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value.trim();
+
+            if (message !== "") {
+                const mensajeCifrado = cifrar(`<%= nombrusuario %>: ${message}`);
+                socket.send(mensajeCifrado);
+                console.log("Mensaje cifrado enviado:", mensajeCifrado);
+                appendMessage(`<%= nombrusuario %>: ${message}`);
+                messageInput.value = "";
+            }
+        }
+
+        function appendMessage(message) {
+    const chatContainer = document.getElementById("chat-container");
+    const messageElement = document.createElement("div");
+
+    if (message.includes(':')) {
+
+        const messageContent = document.createElement("div");
+        messageContent.innerHTML = `<strong>${nombreUsuario}</strong> ${mensaje}`;
+
+        chatContainer.appendChild(messageContent);
+    } else {
+        const messageContent = document.createElement("div");
+        messageContent.textContent = message;
+        chatContainer.appendChild(messageContent);
+    }
+}
+
+    </script>
+
+<%
+    }
+    } catch (SQLException error) {
+        out.print(error.toString());
+    }
+    conec.close();
+    } else {
+        out.println("<script>location.replace('login.jsp');</script>");
+    }
+%>
+
+</body>
 </html>
