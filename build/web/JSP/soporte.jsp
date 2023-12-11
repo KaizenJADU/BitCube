@@ -84,7 +84,7 @@
     %>
     
    <script>
-   const socket = new WebSocket("ws://40.86.11.134:8080/Bit-Cube/chat/<%= results.getString("nombreUsuario")%>/");
+   const socket = new WebSocket("ws://kaizen.gerdoc.com:8080/Bit-Cube/chat/<%= results.getString("nombreUsuario")%>/");
 const nombreUsuario = "Admin";
 
 
