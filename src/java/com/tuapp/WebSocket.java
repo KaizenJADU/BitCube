@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint(value = "/Bit-Cube/chat/{username}")
+@ServerEndpoint(value = "/chat/{username}")
 public class WebSocket {
   private static final Map<String, Session> sessions = new ConcurrentHashMap<>();
       @OnOpen
