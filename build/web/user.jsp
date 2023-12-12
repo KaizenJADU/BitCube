@@ -13,10 +13,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="../styleprincipal.css">
-    <link rel="stylesheet" href="../stylefooterandheader.css">
+    <link rel="stylesheet" href="styleprincipal.css">
+    <link rel="stylesheet" href="stylefooterandheader.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../scriptprincipal.js"></script>
+    <script src="scriptprincipal.js"></script>
 </head>
 
 <body>
@@ -154,7 +154,7 @@ Diversas categorías de interés para que infante tenga una amplia variedad de t
                 <ul class="footer-cat-links">
                     <li><a href="user.jsp"><span>Principal</span></a></li>
                     <li><a href="perfil.jsp"><span>Perfil</span></a></li>
-                    <li><a href="../soporte.jsp"><span>Soporte</span></a></li>
+                    <li><a href="soporte.jsp"><span>Soporte</span></a></li>
                     <li><a href="Calendario.jsp"><span>Calendario</span></a></li><br><br><br><br><br>
                 </ul>
             </div>

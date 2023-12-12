@@ -13,10 +13,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="../styleprincipal.css">
-    <link rel="stylesheet" href="../stylefooterandheader.css">
+    <link rel="stylesheet" href="styleprincipal.css">
+    <link rel="stylesheet" href="stylefooterandheader.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../scriptprincipal.js"></script>
+    <script src="scriptprincipal.js"></script>
 </head>
     <body>
         <%
@@ -60,7 +60,7 @@
                         <li class="navbar_link after-transform"><a class="active" href="useradmin.jsp">Principal</a></li>
                         <li class="navbar_link after-transform"><a href="adminusuarios.jsp">Usuarios</a></li>
                         <li class="navbar_link after-transform"><a href="adminpictograma.jsp">Pictogramas</a></li>
-                        <li class="navbar_link after-transform"><a href="../soporteadmin.jsp">Soporte</a></li>
+                        <li class="navbar_link after-transform"><a href="soporteadmin.jsp">Soporte</a></li>
                         <li class="navbar_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
                     </ul>
                 </nav>
@@ -71,7 +71,7 @@
                 <li class="navbar-responsive_link after-transform"><a class="active" href='useradmin.jsp'>Principal</a></li>
                 <li class="navbar-responsive_link after-transform"><a href='adminusuarios.jsp'>Usuarios</a></li>
                 <li class="navbar-responsive_link after-transform"><a href="adminpictograma.jsp">Pictogramas</a>
-                <li class="navbar-responsive_link after-transform"><a href="../soporteadmin.jsp">Soporte</a>
+                <li class="navbar-responsive_link after-transform"><a href="soporteadmin.jsp">Soporte</a>
                 </li>
                 <li class="navbar-responsive_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
             </ul>
