@@ -166,10 +166,10 @@
 
                 switch (idTipoUsuario) {
                     case 1:
-                        response.sendRedirect("JSP/useradmin.jsp");
+                        response.sendRedirect("useradmin.jsp");
                         break;
                     case 2:
-                        response.sendRedirect("JSP/user.jsp");
+                        response.sendRedirect("user.jsp");
                         break;
                     default:
                         out.write("Usuario no existe o contraseña inválida");
