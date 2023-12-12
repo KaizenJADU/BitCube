@@ -13,13 +13,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styleprincipal.css">
+    <link rel="stylesheet" href="styleprincipal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="../stylefooterandheader.css">
+    <link rel="stylesheet" href="stylefooterandheader.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../scriptprincipal.js"></script>
+    <script src="scriptprincipal.js"></script>
     <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
    
@@ -244,7 +244,7 @@ try (Connection connection = new conectadita().getConnection()) {
         <script src="../scriptfooter.js"></script>
     </footer>
  <script>
-         const socket = new WebSocket("ws://kaizen.gerdoc.com:8080/Bit-Cube/chat/Admin");
+         const socket = new WebSocket("ws://40.86.11.134:8080/Bit-Cube/chat/gerdoc");
         
        
         socket.onmessage = function (event) {
