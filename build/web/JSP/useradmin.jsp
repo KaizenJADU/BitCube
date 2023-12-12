@@ -60,7 +60,7 @@
                         <li class="navbar_link after-transform"><a class="active" href="useradmin.jsp">Principal</a></li>
                         <li class="navbar_link after-transform"><a href="adminusuarios.jsp">Usuarios</a></li>
                         <li class="navbar_link after-transform"><a href="adminpictograma.jsp">Pictogramas</a></li>
-                        <li class="navbar_link after-transform"><a href="soporteadmin.jsp">Soporte</a></li>
+                        <li class="navbar_link after-transform"><a href="../soporteadmin.jsp">Soporte</a></li>
                         <li class="navbar_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
                     </ul>
                 </nav>
@@ -71,7 +71,7 @@
                 <li class="navbar-responsive_link after-transform"><a class="active" href='useradmin.jsp'>Principal</a></li>
                 <li class="navbar-responsive_link after-transform"><a href='adminusuarios.jsp'>Usuarios</a></li>
                 <li class="navbar-responsive_link after-transform"><a href="adminpictograma.jsp">Pictogramas</a>
-                <li class="navbar-responsive_link after-transform"><a href="soporteadmin.jsp">Soporte</a>
+                <li class="navbar-responsive_link after-transform"><a href="../soporteadmin.jsp">Soporte</a>
                 </li>
                 <li class="navbar-responsive_link after-transform"><a href='../login.jsp?cerrar=true'>Cerrar Sesión</a></li>
             </ul>
