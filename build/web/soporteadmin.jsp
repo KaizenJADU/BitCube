@@ -244,7 +244,7 @@ try (Connection connection = new conectadita().getConnection()) {
         <script src="../scriptfooter.js"></script>
     </footer>
  <script>
-         const socket = new WebSocket("ws://kaizen.gerdoc.com:8080/chat/Admin");
+         const socket = new WebSocket("ws://kaizen.gerdoc.com/Bit-Cube/chat/Admin");
         
        
         socket.onmessage = function (event) {
