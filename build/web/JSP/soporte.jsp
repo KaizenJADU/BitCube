@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="stylefooterandheader.css">
+    <link rel="stylesheet" href="../stylefooterandheader.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../scriptprincipal.js"></script>
     <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>

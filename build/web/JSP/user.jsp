@@ -154,7 +154,7 @@ Diversas categorías de interés para que infante tenga una amplia variedad de t
                 <ul class="footer-cat-links">
                     <li><a href="user.jsp"><span>Principal</span></a></li>
                     <li><a href="perfil.jsp"><span>Perfil</span></a></li>
-                    <li><a href="../soporte.jsp"><span>Soporte</span></a></li>
+                    <li><a href="soporte.jsp"><span>Soporte</span></a></li>
                     <li><a href="Calendario.jsp"><span>Calendario</span></a></li><br><br><br><br><br>
                 </ul>
             </div>
