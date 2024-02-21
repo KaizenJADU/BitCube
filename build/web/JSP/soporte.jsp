@@ -11,39 +11,114 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Nanum+Gothic:700|Raleway&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="../stylefooterandheader.css">
-    <link rel="stylesheet" href="../stylesoporteadmin.css">
+    <link rel="stylesheet" href="stylefooterandheader.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../scriptprincipal.js"></script>
+    <script src="scriptprincipal.js"></script>
     <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+    min-height: 100vh;
+    position: relative;
+    background-color: #FAECE1;
+    font-family: "Roboto Condensed", sans-serif;
+}
+#chat-container {
+    height: calc(90vh - 200px);
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 50px;
+    border-radius: 20px;
+}
+
+#message-input {
+    width: calc(100% - 80px); 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#send-button {
+    padding: 10px;
+    border: 0px solid #00b3ff;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #fff;
+    cursor: pointer;
+}
+
+#send-button:hover{
+    border: 1px solid #00b3ff;
+}
+.mensaje-rojo {
+    color: red;
+}
+    </style>
 </head>
 <body>
-   <%
-     HttpSession sesion = request.getSession();
-        String usuario;
-        String idTipo;
-        String contra;
+    <% HttpSession sesion = request.getSession();
+    String usuario;
+    String idTipo;
+    String contra;
 
-        if(sesion.getAttribute("user") != null && sesion.getAttribute("idTipo") != null){
-            usuario = sesion.getAttribute("user").toString();
-            idTipo = sesion.getAttribute("idTipo").toString();
-            Connection conec = null;
-            PreparedStatement pstat = null;
-            ResultSet results = null;
-            conectadita conecta = new conectadita();
-            conec = conecta.getConnection();
+    if(sesion.getAttribute("user") != null && sesion.getAttribute("idTipo") != null){
+        usuario = sesion.getAttribute("user").toString();
+        idTipo = sesion.getAttribute("idTipo").toString();
+        Connection conec = null;
+        PreparedStatement pstat = null;
+        ResultSet results = null;
+        conectadita conecta = new conectadita();
+        conec = conecta.getConnection();
 
-            try {
-                String query = "SELECT * FROM Usuario WHERE correoUsuario=?";
-                pstat = conec.prepareStatement(query);
-                pstat.setString(1, usuario); 
+        try {
+            String query = "SELECT * FROM Usuario WHERE correoUsuario=?";
+            pstat = conec.prepareStatement(query);
+            pstat.setString(1, usuario); 
 
-                results = pstat.executeQuery();
+            results = pstat.executeQuery();
 
-                while (results.next()) {
-                    int idUsuario = results.getInt("idUsuario");
-                    String nombrusuario = results.getString("nombreUsuario");
-        %>
+            while (results.next()) {
+                int idUsuario = results.getInt("idUsuario");
+    %>
+    
+   <script>
+   const socket = new WebSocket("ws://kaizen.gerdoc.com:9080/Bit-Cube/chat/<%= results.getString("nombreUsuario")%>");
+const nombreUsuario = "Admin";
+
+
+    socket.onmessage = function (event) {
+        const mensajeRecibido = event.data;
+        appendMessage(mensajeRecibido);
+        console.log("Mensaje recibido:", mensajeRecibido);
+    };
+
+    function sendMessage() {
+    const messageInput = document.getElementById("message-input");
+    const message = messageInput.value.trim();
+
+    if (message !== "") {
+        socket.send(nombreUsuario + ": " + message);
+        messageInput.value = "";
+
+        // Añadir el nuevo mensaje al contenedor del chat
+        const chatContainer = document.getElementById("chat-container");
+        const messageElement = document.createElement("p");
+        messageElement.textContent = message;
+         messageElement.classList.add("mensaje-rojo");
+        chatContainer.appendChild(messageElement);
+    }
+}
+
+    function appendMessage(message) {
+        const chatContainer = document.getElementById("chat-container");
+        const messageElement = document.createElement("div");
+        messageElement.textContent = message;
+        chatContainer.appendChild(messageElement);
+    }
+</script>
+
     <header>
         <div class="navbar">
             <div class="navbar_wrapper">
@@ -58,10 +133,8 @@
                         <span></span>
                     </div>
                     <ul class="navbar_nav">
-                        <li class="navbar_link after-transform"><a class="active" href="user.jsp">Principal</a>
-                        </li>
-                        <li class="navbar_link after-transform"><a href="Categorias.jsp">Categorías</a>
-                        </li>
+                        <li class="navbar_link after-transform"><a class="active" href="user.jsp">Principal</a></li>
+                        <li class="navbar_link after-transform"><a href="Categorias.jsp">Categorías</a></li>
                         <li class="navbar_link after-transform"><a href="Pictogramas.jsp">Pictogramas</a></li>
                         <li class="navbar_link after-transform"><a href="Videojuegos.jsp">Videojuegos</a></li>
                         <li class="navbar_link after-transform"><a href="Videos.jsp">Videos</a></li>
@@ -74,8 +147,7 @@
         </div>
         <div class="navbar-responsive">
             <ul class="navbar-responsive_nav">
-                <li class="navbar-responsive_link after-transform"><a class="active" href="user.jsp">Principal</a>
-                </li>
+                <li class="navbar-responsive_link after-transform"><a class="active" href="user.jsp">Principal</a></li>
                 <li class="navbar-responsive_link after-transform"><a href="Categorias.jsp">Categorías</a></li>
                 <li class="navbar-responsive_link after-transform"><a href="Pictogramas.jsp">Pictogramas</a></li>
                 <li class="navbar-responsive_link after-transform"><a href="Videojuegos.jsp">Videojuegos</a></li>
@@ -86,14 +158,37 @@
             </ul>
         </div>
     </header>
-    <div>
-        
-        <div id="chat-container" style="background: white"></div>
-        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; margin: 20px">
-            <input type="text" id="message-input" placeholder="Escribe un mensaje...">
-            <button id="send-button" onclick="sendMessage()"><i class="fa-solid fa-paper-plane" style="color: #00b3ff; font-size: 15px"></i></button>
-        </div>
+
+    <div id="chat-container">
+        <!-- Mostrar los comentarios recuperados de la base de datos -->
+        <%
+            try (Connection connection = new conectadita().getConnection()) {
+                if (idUsuario != -1) {
+                    String selectQuery = "SELECT c.texto FROM Comentario c " +
+                            "JOIN RelUsuComent ruc ON c.idComentario = ruc.idComentario " +
+                            "WHERE ruc.idUsuario = ?";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+                        preparedStatement.setInt(1, idUsuario);
+
+                        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                            while (resultSet.next()) {
+                                out.println("<p>" + resultSet.getString("texto") + "</p>");
+                            }
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        %>
     </div>
+
+    <!-- Formulario para enviar nuevos comentarios -->
+    <form onsubmit="sendMessage(); return false;">
+        <input type="text" id="message-input" required>
+        <input type="submit" value="Enviar">
+    </form>
+
     <footer>
         <div>
             <span class="logo">Bit-Cube</span>
@@ -151,7 +246,7 @@
             </div>
         </div>
         <div id="copyright">
-            &copy; Todos los drechos reservados 2023-2024
+            &copy; Todos los derechos reservados 2023-2024
         </div>
         <div id="owner">
             <span>
@@ -161,94 +256,15 @@
         <script src="../scriptfooter.js"></script>
     </footer>
 
-    <script>
-        function cifrar(message) {
-            let mensajeCifrado = "";
-            const mensajeMayusculas = message.toUpperCase();  
-
-            for (let i = 0; i < mensajeMayusculas.length; i++) {
-                const c = mensajeMayusculas.charAt(i);
-                if (c >= 'A' && c <= 'Z') {
-                    const base = 'A';
-                    const letraCifrada = String.fromCharCode(base.charCodeAt(0) + ('Z'.charCodeAt(0) - c.charCodeAt(0)));
-                    mensajeCifrado += letraCifrada;
-                } else {
-                    mensajeCifrado += c;
-                }
-            }
-
-            return mensajeCifrado;
+    <%
         }
-
-        function descifrar(mensajeCifrado) {
-            let mensajeDescifrado = "";
-            const mensajeMayusculas = mensajeCifrado.toUpperCase();  
-
-            for (let i = 0; i < mensajeMayusculas.length; i++) {
-                const c = mensajeMayusculas.charAt(i);
-                if (c >= 'A' && c <= 'Z') {
-                    const base = 'A';
-                    const letraDescifrada = String.fromCharCode(base.charCodeAt(0) + (c.charCodeAt(0) - 'Z'.charCodeAt(0)));
-                    mensajeDescifrado += letraDescifrada;
-                } else {
-                    mensajeDescifrado += c;
-                }
-            }
-
-            return mensajeDescifrado.toLowerCase(); 
+        } catch (SQLException error) {
+            out.print(error.toString());
         }
-
-        const socket = new WebSocket("ws://localhost:8080/Bit-Cube/chat/user/<%= idUsuario %> , <%= nombrusuario %>");
-
-        socket.onmessage = function(event) {
-            const mensajeCifrado = event.data;
-            const mensajeDescifrado = descifrar(mensajeCifrado);
-            appendMessage(mensajeDescifrado);
-            console.log("Mensaje cifrado recibido:", mensajeCifrado);
-        };
-
-        function sendMessage() {
-            const messageInput = document.getElementById("message-input");
-            const message = messageInput.value.trim();
-
-            if (message !== "") {
-                const mensajeCifrado = cifrar(`<%= nombrusuario %>: ${message}`);
-                socket.send(mensajeCifrado);
-                console.log("Mensaje cifrado enviado:", mensajeCifrado);
-                appendMessage(`<%= nombrusuario %>: ${message}`);
-                messageInput.value = "";
-            }
-        }
-
-        function appendMessage(message) {
-    const chatContainer = document.getElementById("chat-container");
-    const messageElement = document.createElement("div");
-
-    if (message.includes(':')) {
-
-        const messageContent = document.createElement("div");
-        messageContent.innerHTML = `<strong>${nombreUsuario}</strong> ${mensaje}`;
-
-        chatContainer.appendChild(messageContent);
-    } else {
-        const messageContent = document.createElement("div");
-        messageContent.textContent = message;
-        chatContainer.appendChild(messageContent);
-    }
-}
-
-    </script>
-
-<%
-    }
-    } catch (SQLException error) {
-        out.print(error.toString());
-    }
-    conec.close();
+        conec.close();
     } else {
         out.println("<script>location.replace('login.jsp');</script>");
     }
-%>
-
+    %>
 </body>
 </html>

@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="conexion.conectadita"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.sql.SQLException"%>
@@ -15,16 +17,57 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../stylefooterandheader.css">
-    <link rel="stylesheet" href="../stylesoporteadmin.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../scriptprincipal.js"></script>
     <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   
+    <style>
+        body {
+    min-height: 100vh;
+    position: relative;
+    background-color: #FAECE1;
+    font-family: "Roboto Condensed", sans-serif;
+}
+#chat-container {
+    height: calc(90vh - 200px);
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 50px;
+    border-radius: 20px;
+}
+
+#message-input {
+    width: calc(100% - 100px); 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 0 1% 0 2%;
+}
+
+#send-button {
+    padding: 10px;
+    border: 0px solid #00b3ff;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #fff;
+    cursor: pointer;
+}
+
+#send-button:hover{
+    border: 1px solid #00b3ff;
+}
+.mensaje-rojo {
+    color: red;
+}
+    </style>
 </head>
 <body>
     <%
      HttpSession sesion = request.getSession();
+     int ultimoIdMostrado = (int) (sesion.getAttribute("ultimoIdMostrado") != null ? sesion.getAttribute("ultimoIdMostrado") : 0);
         String usuario;
         String idTipo;
         String contra;
@@ -84,14 +127,56 @@
             </ul>
         </div>
     </header>
-   <div>
-      
-        <div id="chat-container" style="background: white"></div>
-        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; margin: 20px">
-            <input type="text" id="message-input" placeholder="Escribe un mensaje...">
-            <button id="send-button" onclick="sendMessage()"><i class="fa-solid fa-paper-plane" style="color: #00b3ff; font-size: 15px"></i></button>
-        </div>
+   
+    <div id="chat-container">
+       <%
+try (Connection connection = new conectadita().getConnection()) {
+    String selectQuery = "SELECT idComentario, texto FROM Comentario WHERE idComentario > ?";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+        preparedStatement.setInt(1, ultimoIdMostrado);
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                int idComentario = resultSet.getInt("idComentario");
+                out.println("<p>" + resultSet.getString("texto") + "</p>");
+
+                // Actualizar el último ID de comentario mostrado en la sesión
+                if (idComentario > ultimoIdMostrado) {
+                    sesion.setAttribute("ultimoIdMostrado", idComentario);
+                }
+            }
+        }
+    }
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+%>
+
     </div>
+
+<form onsubmit="sendMessage(); return false;" style="margin: 0 0 5%;
+">
+        <select id="nombre-usuario-combo" required="" style="margin: 0 0 3% 5%">
+    <option value="" disabled selected>Selecciona un usuario</option>
+    <%
+        try (Connection connection = new conectadita().getConnection()) {
+            String querys = "SELECT nombreUsuario FROM Usuario where idTipoUsuario=2";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(querys)) {
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+    %>
+                        <option value="<%= resultSet.getString("nombreUsuario") %>"><%= resultSet.getString("nombreUsuario") %></option>
+    <%
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    %>
+</select>
+        <input type="text" id="message-input" required>
+        <button type="submit" id="send-button" ><i class="fa-solid fa-paper-plane" style="color: #00b3ff; font-size: 15px"></i></button>
+    </form>
     
 <footer>
        <div>
@@ -158,74 +243,41 @@
        </div>
         <script src="../scriptfooter.js"></script>
     </footer>
-
-        <script>
-        function cifrar(message) {
-            let mensajeCifrado = "";
-            const mensajeMayusculas = message.toUpperCase();  
-
-            for (let i = 0; i < mensajeMayusculas.length; i++) {
-                const c = mensajeMayusculas.charAt(i);
-                if (c >= 'A' && c <= 'Z') {
-                    const base = 'A';
-                    const letraCifrada = String.fromCharCode(base.charCodeAt(0) + ('Z'.charCodeAt(0) - c.charCodeAt(0)));
-                    mensajeCifrado += letraCifrada;
-                } else {
-                    mensajeCifrado += c;
-                }
-            }
-
-            return mensajeCifrado;
-        }
-
-      function descifrar(mensajeCifrado) {
-    let mensajeDescifrado = "";
-    const mensajeMayusculas = mensajeCifrado.toUpperCase();  
-
-    for (let i = 0; i < mensajeMayusculas.length; i++) {
-        const c = mensajeMayusculas.charAt(i);
-        if (c >= 'A' && c <= 'Z') {
-            const base = 'A';
-            const letraDescifrada = String.fromCharCode(base.charCodeAt(0) + ('Z'.charCodeAt(0) - c.charCodeAt(0)));
-            mensajeDescifrado += letraDescifrada;
-        } else {
-            mensajeDescifrado += c;
-        }
-    }
-
-    return mensajeDescifrado.toLowerCase(); 
-}
-
-
-    const socket = new WebSocket("ws://localhost:8080/Bit-Cube/chat/admin/<%= idUsuario %> , <%= nombrusuario %>");
-
-       socket.onmessage = function(event) {
-        const mensajeCifrado = event.data;
-        const mensajeDescifrado = descifrar(mensajeCifrado);
-        appendMessage(mensajeDescifrado);
-        console.log("Mensaje cifrado recibido:", mensajeCifrado);
+ <script>
+         const socket = new WebSocket("ws://kaizen.gerdoc.com:9080/Bit-Cube/chat/Admin");
+        
+       
+        socket.onmessage = function (event) {
+        const mensaje = event.data;
+        appendMessage(mensaje);
+        console.log("Mensaje recibido:", mensaje);
     };
 
+    function sendMessage() {
+        const nombreUsuarioCombo = document.getElementById("nombre-usuario-combo");
+        const nombreUsuario = nombreUsuarioCombo.value;
+        const messageInput = document.getElementById("message-input");
+        const message = messageInput.value.trim();
 
-        function sendMessage() {
-            const messageInput = document.getElementById("message-input");
-            const message = messageInput.value.trim();
-
-            if (message !== "") {
-                const mensajeCifrado = cifrar(message);
-                socket.send(mensajeCifrado);
-                console.log("Mensaje cifrado enviado:", mensajeCifrado);
-                messageInput.value = "";
-            }
+        if (message !== "") {
+            socket.send(nombreUsuario + ": " + message); 
+            messageInput.value = "";
         }
+          const chatContainer = document.getElementById("chat-container");
+        const messageElement = document.createElement("p");
+        messageElement.textContent = message;
+        messageElement.classList.add("mensaje-rojo");
+        chatContainer.appendChild(messageElement);
+    }
 
-        function appendMessage(message) {
+    function appendMessage(message) {
         const chatContainer = document.getElementById("chat-container");
         const messageElement = document.createElement("div");
         messageElement.textContent = message;
         chatContainer.appendChild(messageElement);
     }
     </script>
+        
     <%
           }
            }
