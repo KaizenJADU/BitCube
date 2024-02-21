@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="stylefooterandheader.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scriptprincipal.js"></script>
+    <script src="../scriptprincipal.js"></script>
     <script src="https://kit.fontawesome.com/cb6271a172.js" crossorigin="anonymous"></script>
 
     <style>
