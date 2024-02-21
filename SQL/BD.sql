@@ -139,7 +139,7 @@ create table
         idRelUsuComent int primary key auto_increment,
         idUsuario int,
         idComentario int,
-        foreign key(idUsuario) references Usuario(idUsuario),
+        foreign key(idUsuario) references Usuario(IdUsuario),
         foreign key(idComentario) references Comentario(idComentario)
     );
 
